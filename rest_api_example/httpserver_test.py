@@ -21,10 +21,11 @@ def get_test():
 
 def predict():
     data={"username":"zhangsan","password":"123"}
-    param = {'param' : data}
-    r = s.post('http://10.8.26.25:5000/api/predict', data = param)
+    data_json = json.dumps(data)
+    print(data_json)
+    r = s.post('http://10.8.26.25:5000/api/predict', data = data_json)
     result = json.loads(r.text)
-    print(result['data'])
+    print(result)
 
 if __name__ == '__main__':
     predict()

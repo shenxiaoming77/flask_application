@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from  flask import  abort
 from  flask import  make_response
 from  flask import  request
+import  json
 
 app = Flask(__name__)
 
@@ -78,12 +79,11 @@ def delete_task_byId(task_id):
 @app.route('/api/predict', methods=['POST'])
 def predict():
 
-    print (request.form)
-
-    data = request.form['param']
-    print(data)
-    return  jsonify({'data': data})
+    param = request.get_data()
+    dict1 = json.loads(param)
+    print(dict1['username'])
+    return  jsonify({'result':'success'})
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0", port=5000, debug=True)
